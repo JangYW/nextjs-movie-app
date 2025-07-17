@@ -1,5 +1,5 @@
 import Navigation from "@/components/navigation"
-
+import type { Metadata } from "next"; // ✅ 추가
 export const metadata: Metadata = {
   title: "Not Found"
 };
