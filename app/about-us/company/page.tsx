@@ -1,3 +1,5 @@
+import type { Metadata } from "next"; // 👈 이 줄 추가
+
 export const metadata: Metadata = {
   title: "Company"
 };
