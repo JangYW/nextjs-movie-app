@@ -2,8 +2,15 @@ import MovieInfo from "@/components/movie-info";
 import MovieVideos from "@/components/movie-videos";
 import { Suspense } from "react";
 
-// ✅ 타입 강제 없이 함수에서 바로 구조분해
-export default function MovieDetail({ params }: { params: { id: string } }) {
+// ✅ 타입을 먼저 선언
+interface MovieDetailPageProps {
+  params: {
+    id: string;
+  };
+}
+
+// ✅ props 타입을 명확하게 전달
+export default function MovieDetail({ params }: MovieDetailPageProps) {
   const { id } = params;
 
   return (
