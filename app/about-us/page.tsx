@@ -1,4 +1,5 @@
 import Avatar from "./components/avatar";
+import type { Metadata } from "next"; // ✅ 추가
 
 export const metadata: Metadata = {
   title: "About us"
