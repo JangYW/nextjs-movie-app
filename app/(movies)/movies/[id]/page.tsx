@@ -5,9 +5,9 @@ import { getMovie } from "@/components/movie-info";
 
 export const dynamic = "force-dynamic"; // 페이지 전체가 동적으로 렌더링됨
 
-interface IParams {
-	params: { id: string } 
-}
+type IParams = {
+  params: { id: string };
+};
 
 export async function generateMetadata({params} : IParams){
 	const movie = await getMovie(params.id)
