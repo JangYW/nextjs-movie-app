@@ -5,18 +5,14 @@ import { getMovie } from "@/components/movie-info";
 
 export const dynamic = "force-dynamic"; // 페이지 전체가 동적으로 렌더링됨
 
-type IParams = {
-  params: { id: string };
-};
-
-export async function generateMetadata({params} : IParams){
+export async function generateMetadata({ params }: { params: { id: string } }) {
 	const movie = await getMovie(params.id)
 	return{
 		 title: `Movie #${movie.title}`, // 그냥 id만 사용 (가볍고 안전함)
 	}
 }
 
-export default async function MovieDetail({ params } : IParams) {
+export default async function MovieDetail({ params }: { params: { id: string } }) {
   const { id } = params;
 
   return (
