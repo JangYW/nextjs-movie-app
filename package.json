@@ -6,12 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "test": "vitest"
   },
   "dependencies": {
+    "@storybook/addon-a11y": "^8.6.14",
+    "@storybook/addon-docs": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
     "next": "15.3.4",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "storybook": "^8.6.14",
+    "swiper": "^11.2.10",
+    "vite": "^5.4.19",
+    "vitest": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.31.0",
@@ -22,6 +33,7 @@
     "eslint": "^9.31.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.3.0",
+    "playwright": "^1.54.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
@@ -29,5 +41,12 @@
   "main": "index.js",
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended",
+      "plugin:storybook/recommended",
+      "plugin:storybook/recommended"
+    ]
+  }
 }

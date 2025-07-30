@@ -1,28 +1,42 @@
-import styles from "@/styles/home.module.css";
-import Movie from "@/components/movie"
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+// app/(home)/page.tsx
+'use client';
 
-export const metadata = {
-	title : "Home",
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
-}
+type SwiperMeta = {
+  id: string;
+  title: string;
+  basePath: string;
+  thumbnail: string;
+};
 
-import { API_URL } from "@/lib/constants";
+export default function HomePage() {
+  const [list, setList] = useState<SwiperMeta[]>([]);
 
-async function getMovies(){
-	// await new Promise((resolve => setTimeout(resolve, 1000)))
-	const response = await fetch (API_URL);
-	const json = await response.json();
-	return json;
-}
+  useEffect(() => {
+    fetch("/api/swiper")
+      .then((res) => res.json())
+      .then((data) => setList(data));
+  }, []);
 
-export default async function HomePage() {
-	const movies = await getMovies();
-	return (
-		<div className={styles.container}>
-			{movies.map(movie =>
-				<Movie key={movie.id} id={movie.id} poster_path={movie.poster_path} title={movie.title} />
-			)} 
-		</div>
-	);
+  return (
+    <main style={{ display: "flex", gap: "20px", flexWrap: "wrap", padding: "20px" }}>
+      {list.map((item) => (
+        <Link key={item.id} href={`/swiper/${item.id}`} style={{ textAlign: "center", width: "300px" }}>
+          <img
+            src={item.basePath + item.thumbnail}
+            alt={`${item.title} 썸네일`}
+            style={{
+              width: "100%",
+              borderRadius: "12px",
+              boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+              marginBottom: "8px",
+            }}
+          />
+          <div style={{ fontWeight: "bold", fontSize: "16px" }}>{item.title}</div>
+        </Link>
+      ))}
+    </main>
+  );
 }
